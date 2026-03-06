@@ -1,0 +1,131 @@
+.body, body{
+    /* make the page a vertical flex container so we can center the main area
+       and keep the footer at the bottom */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+            /* prevent accidental horizontal scroll from small overflows */
+            overflow-x: hidden;
+            /* reserve space for a fixed header/footer placed at the top */
+            padding-top: 64px;
+}
+
+/* Use border-box everywhere to avoid sizing surprises */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Ensure html/body take full height for vertical centering math */
+html, body {
+    height: 100%;
+}
+
+/* The central area that should be centered both horizontally and vertically */
+.main{
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: center;
+    align-items: center;
+    /* padding only vertically to avoid horizontal overflow */
+    padding: 20px 0 0;
+}
+
+/* Footer stays after the main area and will be pushed to the bottom
+   Use flex-shrink:0 so it doesn't collapse when space is tight */
+.footer{
+    /* fixed to top so it's always visible */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    color: #666;
+}
+
+.box{
+    display: inline-flex;
+     flex-direction: column;
+     align-items: center;
+     padding: 20px;
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+h1
+{
+    font-weight: 900;
+}
+
+input[type="text"], input[type="number"] {
+    /* Use a comfortable fixed width but allow shrinking on very small screens */
+    width: 260px;
+    max-width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 12px auto 0;
+}
+
+.results {
+    width: 100%;
+    max-width: 520px;
+    margin: 12px auto 0;
+}
+
+.result-card{
+    background: #f8f9ff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.result-card h2{margin:0 0 8px 0}
+.result-card p{margin:6px 0}
+.result-card small{display:block; margin-top:8px; color:#666}
+
+.link {
+    font-weight: 600;
+    color: #5a5b5c;
+    text-decoration: none;
+    height: 100%;
+    width: fit-content;
+    padding: 5px;
+
+}
+
+/* space buttons inside the fixed top bar */
+.footer .link {
+    margin: 0 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+.footer .link:hover {
+    background: rgba(0,0,0,0.04);
+}
