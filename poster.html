@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kako uštedjeti i pomoći klimatskim promjenama</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sun: #F5A623;
+      --sky: #1A6FA8;
+      --leaf: #2E8B57;
+      --wind: #5BC3EB;
+      --cream: #FDF8F0;
+      --dark: #1C2B1E;
+      --mid: #3A5A40;
+      --light-green: #D4EDD4;
+      --accent: #E8F4FD;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0f2d1a 0%, #1a4a2e 40%, #1A6FA8 100%);
+      padding: 80px 40px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(245,166,35,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(91,195,235,0.15) 0%, transparent 50%);
+    }
+
+    .sun-deco {
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 200px; height: 200px;
+      opacity: 0.12;
+    }
+    .sun-deco circle { fill: #F5A623; }
+    .sun-deco line { stroke: #F5A623; stroke-width: 8; }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(245,166,35,0.2);
+      border: 1px solid rgba(245,166,35,0.5);
+      color: var(--sun);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      animation: fadeDown 0.9s ease 0.1s both;
+    }
+
+    .hero h1 span { color: var(--sun); }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+      font-weight: 300;
+      animation: fadeDown 1s ease 0.2s both;
+    }
+
+    .hero-pills {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      animation: fadeDown 1s ease 0.3s both;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      display: flex; align-items: center; gap: 8px;
+      backdrop-filter: blur(6px);
+      transition: background 0.3s;
+    }
+    .pill:hover { background: rgba(255,255,255,0.2); }
+    .pill-icon { font-size: 1.2rem; }
+
+    /* wave divider */
+    .wave { display: block; line-height: 0; }
+    .wave svg { display: block; }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 80px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .section-label .bar {
+      width: 5px; height: 48px;
+      border-radius: 3px;
+    }
+    .bar-sun { background: linear-gradient(to bottom, var(--sun), #e07b00); }
+    .bar-wind { background: linear-gradient(to bottom, var(--wind), var(--sky)); }
+
+    .section-label h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* ── SOLAR CARD GRID ── */
+    .solar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 680px) {
+      .solar-grid { grid-template-columns: 1fr; }
+    }
+
+    .solar-grid .wide { grid-column: 1 / -1; }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeUp 0.7s ease both;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+      font-weight: 300;
+    }
+
+    .card.highlight {
+      background: linear-gradient(135deg, #FFF8E7, #FEF3CD);
+      border-color: rgba(245,166,35,0.3);
+    }
+    .card.highlight h3 { color: #7a4f00; }
+
+    .card.sky-card {
+      background: linear-gradient(135deg, #EAF6FF, #D6EEFF);
+      border-color: rgba(26,111,168,0.2);
+    }
+
+    /* ── FEATURE LIST ── */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feature-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #333;
+      font-weight: 300;
+    }
+    .feat-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .dot-sun { background: var(--sun); }
+    .dot-wind { background: var(--wind); }
+
+    strong.hl { font-weight: 600; color: var(--dark); }
+
+    /* ── WIND SECTION BG ── */
+    .wind-bg {
+      background: linear-gradient(180deg, var(--cream) 0%, #EBF7FF 30%, #EBF7FF 70%, var(--cream) 100%);
+    }
+
+    /* ── WIND GRID ── */
+    .wind-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .wind-grid { grid-template-columns: 1fr; }
+    }
+
+    .wind-image-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(91,195,235,0.3);
+      box-shadow: 0 8px 32px rgba(91,195,235,0.15);
+    }
+    .wind-image-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .wind-image-caption {
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      color: #666;
+      text-align: center;
+      background: #f8fcff;
+      border-top: 1px solid rgba(91,195,235,0.2);
+      font-style: italic;
+    }
+
+    /* ── CTA / LINKS ── */
+    .links-section {
+      background: linear-gradient(135deg, #0f2d1a, #1a4a2e);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .links-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .links-section p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+
+    .link-cards {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .link-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 32px 36px;
+      color: #fff;
+      text-decoration: none;
+      flex: 1;
+      min-width: 220px;
+      transition: background 0.3s, transform 0.3s;
+      backdrop-filter: blur(8px);
+    }
+    .link-card:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+    }
+    .link-card .lc-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .link-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .link-card p { font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      background: #0d1f10;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.12s; }
+    .card:nth-child(3) { animation-delay: 0.19s; }
+    .card:nth-child(4) { animation-delay: 0.26s; }
+    .card:nth-child(5) { animation-delay: 0.33s; }
+
+    /* divider */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+      margin: 0 auto;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="sun-deco" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="50"/>
+    <line x1="100" y1="10" x2="100" y2="40"/>
+    <line x1="100" y1="160" x2="100" y2="190"/>
+    <line x1="10" y1="100" x2="40" y2="100"/>
+    <line x1="160" y1="100" x2="190" y2="100"/>
+    <line x1="29" y1="29" x2="50" y2="50"/>
+    <line x1="150" y1="150" x2="171" y2="171"/>
+    <line x1="171" y1="29" x2="150" y2="50"/>
+    <line x1="50" y1="150" x2="29" y2="171"/>
+  </svg>
+
+  <div class="hero-tag">🌍 Obnovljiva energija</div>
+  <h1>Kako pridonijeti ublažavanju<br/><span>klimatskih promjena</span>, a pritom i uštedjeti?</h1>
+  <p class="hero-sub">Solarna i energija vjetra — dostupna svima, odmah, u Hrvatskoj</p>
+  <div class="hero-pills">
+    <div class="pill"><span class="pill-icon">☀️</span> Solarna energija</div>
+    <div class="pill"><span class="pill-icon">💨</span> Energija vjetra</div>
+    <div class="pill"><span class="pill-icon">💰</span> Uštedite na računu</div>
+    <div class="pill"><span class="pill-icon">🌱</span> Čuvajte okoliš</div>
+  </div>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="60">
+    <path fill="#FDF8F0" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/>
+  </svg>
+</div>
+
+<!-- SOLAR SECTION -->
+<section class="section">
+  <div class="section-label">
+    <div class="bar bar-sun"></div>
+    <div>
+      <p style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--sun);font-weight:600;margin-bottom:4px;">Sunčeva energija</p>
+      <h2>Solarni paneli</h2>
+    </div>
+  </div>
+
+  <div class="solar-grid">
+
+    <div class="card wide">
+      <div class="card-icon">☀️</div>
+      <h3>Što je solarni panel?</h3>
+      <p>Solarni panel je uređaj koji pretvara <strong class="hl">Sunčevu energiju u električnu</strong>. Sunce je neiscrpan izvor energije i dostupno je svima — bez obzira gdje živite u Hrvatskoj.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <h3>Gdje ih postaviti?</h3>
+      <p>Panele je potrebno postaviti na <strong class="hl">krov kuće u smjeru juga</strong>. Živite u stanu? Mogu se postaviti i na krovove zgrada ili čak na vaše <strong class="hl">balkone</strong>!</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">⏱️</div>
+      <h3>Brzo postavljanje, dugi vijek</h3>
+      <p>Postavljanje panela kratko traje, a oni mogu <strong class="hl">raditi i do 20 godina</strong> — investicija koja se sigurno isplati na dugi rok.</p>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-icon">💸</div>
+      <h3>Uštedite na struji</h3>
+      <p>Ono možda najbitnije — korištenje solarnih panela dugoročno <strong class="hl">smanjuje VAŠ račun za struju</strong>, a višak energije možete i prodati u mrežu.</p>
+    </div>
+
+    <div class="card sky-card">
+      <div class="card-icon">🌿</div>
+      <h3>Čuvajte okoliš</h3>
+      <p>Korištenjem obnovljivih izvora energije smanjujete <strong class="hl">ovisnost o neobnovljivim izvorima</strong> energije i vaš negativni utjecaj na okoliš.</p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- WIND SECTION -->
+<div class="wind-bg">
+  <section class="section">
+    <div class="section-label">
+      <div class="bar bar-wind"></div>
+      <div>
+        <p style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:4px;">Energija vjetra</p>
+        <h2>Vjetroturbine</h2>
+      </div>
+    </div>
+
+    <div class="wind-grid">
+
+      <div>
+        <ul class="feature-list">
+          <li>
+            <span class="feat-dot dot-wind"></span>
+            <span>Vjetroturbine nisu samo <strong class="hl">ogromne vjetrenjače</strong> koje možete vidjeti oko Šibenika i Vodica — one mogu biti i mali uređaji visine samo <strong class="hl">1 metar</strong>!</span>
+          </li>
+          <li>
+            <span class="feat-dot dot-wind"></span>
+            <span>Vjetar <strong class="hl">stalno puše</strong> kod nas uz obalu, na otocima, na brdima i planinama.</span>
+          </li>
+          <li>
+            <span class="feat-dot dot-wind"></span>
+            <span>Nažalost, moguće ih je instalirati samo ukoliko imate <strong class="hl">kuću ili vikendicu</strong> jer je za njihov rad potreban otvoren prostor gdje stalno puše vjetar.</span>
+          </li>
+          <li>
+            <span class="feat-dot dot-wind"></span>
+            <span>Pomoću turbine možete prikupiti dovoljno energije za vašu <strong class="hl">rasvjetu i kućne aparate</strong>, a time dosta <strong class="hl">UŠTEDITE</strong>.</span>
+          </li>
+          <li>
+            <span class="feat-dot dot-wind"></span>
+            <span>Malu i jednostavnu vjetroturbinu <strong class="hl">VI možete lagano postaviti</strong> u svom dvorištu — pogledajte primjer na slici.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="wind-image-card">
+        <img
+          src="slike/Wind-turbine-3m-01.jpg"
+          alt="Mala vjetroturbina visine 3 metra"
+        />
+        <div class="wind-image-caption">Slika 1. Mala vjetroturbina — primjer za dvorište</div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<hr class="divider"/>
+
+<!-- LINKS / CTA -->
+<section class="links-section">
+  <h2>Saznajte više i izračunajte troškove</h2>
+  <p>Posjetite pouzdane izvore i napravite prvi korak prema obnovljivoj energiji</p>
+
+  <div class="link-cards">
+    <a class="link-card" href="https://www.zez.coop" target="_blank" rel="noopener">
+      <div class="lc-icon">🌞</div>
+      <h3>Zelena Energetska Zadruga</h3>
+      <p>Neprofitna organizacija za solarnu energiju u Hrvatskoj — informacije i savjeti</p>
+    </a>
+    <a class="link-card" href="https://www.boljaenergija.hr" target="_blank" rel="noopener">
+      <div class="lc-icon">💨</div>
+      <h3>Bolja Energija</h3>
+      <p>Sve o energiji vjetra — turbine, savjeti, instalacija za kućanstva</p>
+    </a>
+  </div>
+
+  <p style="margin-top:40px; color:rgba(255,255,255,0.45); font-size:0.85rem;">
+    💡 Skenirajte QR kodove na originalnom posteru za izravne linkove i kalkulator troškova panela
+    <button style="background-color: #1A6FA8; border: none; color: white; padding: 10px 20px; cursor: pointer; border-radius: 4px; margin-left: 50px;" onclick="window.open('slike/poster.pdf', '_blank')">Pdf postera</button>
+    <button style="background-color: #1A6FA8; border: none; color: white; padding: 10px 20px; cursor: pointer; border-radius: 4px; margin-left: 50px;" onclick="window.open('index.html', '_blank')">Solarni Kalkulator</button>
+  </p>
+</section>
+
+<footer>
+  &copy; 2025 Obnovljiva energija · Solarna i energija vjetra za svakoga
+</footer>
+
+</body>
+</html>
