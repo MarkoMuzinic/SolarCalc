@@ -127,9 +127,21 @@ input[type="text"], input[type="number"] {
     border-radius: 5px;
 }
 
+
 input[type="submit"] {
     padding: 10px 20px;
     background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 12px auto 0;
+}
+
+.anketa{
+    padding: 10px 20px;
+    background-color: #3cae1f;
     color: white;
     border: none;
     border-radius: 5px;
