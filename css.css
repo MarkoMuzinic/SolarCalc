@@ -12,6 +12,8 @@
     overflow-x: hidden;
     /* reserve space for the fixed top bar */
     padding-top: 96px;
+    background-image: url(slike/background.png);
+    background-size: cover;
 }
 
 /* Use border-box everywhere to avoid sizing surprises */
